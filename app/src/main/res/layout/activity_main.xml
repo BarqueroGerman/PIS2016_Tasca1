@@ -10,8 +10,78 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.ub.pis2016.gbarquero.pis2016_tasca1.MainActivity">
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/change_layout">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/from_layout">
+
+            <TextView
+                android:text="@string/euro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/editText2"
+                android:layout_weight="1"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <Button
+            android:text="@string/reverse"
+            android:layout_width="60dp"
+            android:id="@+id/reverse"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/to_layout">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/to_txt"
+                android:layout_weight="1"
+                android:text="@string/dollar" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/editText3"
+                android:layout_weight="1"
+                android:maxLines="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:text="@string/change"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/change_button"
+        android:layout_below="@+id/change_layout"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

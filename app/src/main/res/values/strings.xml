@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PIS2016_Tasca1</string>
+    <string name="dollar">DOLLAR ($)</string>
+    <string name="euro">EURO (€)</string>
+    <string name="reverse">&#60;-&#62;</string>
+    <string name="change">Do it!</string>
 </resources>
