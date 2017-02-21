@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">PIS2016_Tasca1</string>
-    <string name="dollar">DOLLAR ($)</string>
-    <string name="euro">EURO (€)</string>
+    <string name="dollar">$</string>
+    <string name="dollar_full">DOLLAR ($)</string>
+    <string name="euro">€</string>
+    <string name="euro_full">EURO (€)</string>
     <string name="reverse">&#60;-&#62;</string>
     <string name="change">Do it!</string>
+    <string name="fees_checkbox">Do you want to add fees?</string>
+    <string name="result">You get...</string>
+    <string name="congrats1">Not that bad, uh?</string>
+    <string name="current_exchange_value">The current exchange relation is:</string>
 </resources>
