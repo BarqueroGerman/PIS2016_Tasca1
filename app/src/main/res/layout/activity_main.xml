@@ -23,63 +23,130 @@
         android:layout_centerHorizontal="false">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
             android:id="@+id/from_layout">
 
-            <TextView
-                android:text="@string/euro_full"
-                android:layout_width="match_parent"
+            <Space
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/from_txt"
+                android:layout_weight="1"
+                android:elevation="0dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:id="@+id/from_layout_centered">
+
+                <TextView
+                    android:text="@string/euro_full"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/from_txt"
+                    android:layout_weight="1"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/from_value"
+                    android:layout_weight="1"
+                    android:maxLines="1" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:ems="10"
-                android:id="@+id/from_value"
-                android:layout_weight="1"
-                android:maxLines="1" />
         </LinearLayout>
 
-        <Button
-            android:text="@string/reverse"
-            android:layout_width="60dp"
-            android:id="@+id/reverse"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:onClick="reverseCurrencies" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:id="@+id/reverse_layout"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+
+            <Button
+                android:text="@string/reverse"
+                android:layout_width="60dp"
+                android:id="@+id/reverse"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:onClick="reverseCurrencies"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+
+        </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/to_layout">
 
-            <TextView
-                android:layout_width="match_parent"
+            <Space
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/to_txt"
-                android:layout_weight="1"
-                android:text="@string/dollar_full" />
+                android:layout_weight="1" />
 
-            <EditText
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:ems="10"
-                android:id="@+id/to_value"
-                android:layout_weight="1"
-                android:maxLines="1"
-                android:enabled="false"
-                android:text="0.0" />
+                android:layout_weight="3"
+                android:id="@+id/to_layout_centered">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:id="@+id/to_txt"
+                    android:layout_weight="1"
+                    android:text="@string/dollar_full"
+                    android:layout_width="wrap_content"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/to_value"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:enabled="false"
+                    android:text="0.0"
+                    android:textStyle="normal|bold"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -90,14 +157,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/exchange_value_layout"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginTop="30dp">
 
         <TextView
             android:text="@string/current_exchange_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/exchange_value_txt"
-            android:layout_weight="1.02" />
+            android:layout_weight="1.02"
+            android:textSize="15sp" />
 
         <EditText
             android:layout_height="wrap_content"
@@ -112,7 +181,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/fees_layout"
         android:layout_below="@+id/change_layout"
         android:layout_alignParentLeft="true"
@@ -123,7 +192,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/fees_checkbox"
             android:text="@string/fees_checkbox"
-            android:onClick="feesCheckChange" />
+            android:onClick="feesCheckChange"
+            android:textSize="15sp" />
 
         <EditText
             android:layout_width="match_parent"

@@ -1,9 +1,15 @@
 package edu.ub.pis2016.gbarquero.pis2016_tasca1;
 
+import android.content.res.Configuration;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -84,49 +90,40 @@ public class MainActivity extends AppCompatActivity {
                 updateValues();
             }
         });
+
+        SensorEventListener m_sensorEventListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                feesCheckChange((CheckBox) findViewById(R.id.fees_checkbox));
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+        };
+
+        SensorManager sm = (SensorManager)getSystemService(SENSOR_SERVICE);
+        sm.registerListener(m_sensorEventListener, sm.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    protected void updateValues(){
+    private void updateValues(){
         EditText toTxt = (EditText) findViewById(R.id.to_value);
         double toValue = getResult();
-        toTxt.setText(Double.toString(toValue));
+        toTxt.setText(getRoundedString(toValue,2));
     }
 
-    protected void updateExchangeValueText(){
+    private void updateExchangeValueText(){
         EditText editText = (EditText)findViewById(R.id.exchange_value);
-        editText.setText(Double.toString(exchangeValues[from][to]));
+        editText.setText(getRoundedString(exchangeValues[from][to], 3));
     }
 
-    protected void reverseCurrencies(View v){
-        int aux = from;
-        from = to;
-        to = aux;
-
-        // Ara actualitzem els textos de l'aplicacio
-        updateCurrenciesDisplay();
-        updateValues();
-        updateExchangeValueText();
-    }
-
-    protected void updateCurrenciesDisplay(){
+    private void updateCurrenciesDisplay(){
         TextView fromTxt = (TextView) findViewById(R.id.from_txt);
         TextView toTxt = (TextView) findViewById(R.id.to_txt);
         fromTxt.setText(Currencies.getFullStringId(from));
         toTxt.setText(Currencies.getFullStringId(to));
     }
 
-    protected void feesCheckChange(View v){
-        CheckBox checkbox = (CheckBox) v;
-        EditText edittext = (EditText) findViewById(R.id.fees_percentage);
-        if(checkbox.isChecked()){
-            edittext.setVisibility(View.VISIBLE);
-        }else{
-            edittext.setVisibility(View.GONE);
-        }
-        updateValues();
-    }
-
-    protected double getResult(){
+    private double getResult(){
         EditText fromTxt = (EditText) findViewById(R.id.from_value);
         String fromValueStr = fromTxt.getText().toString();
         double fromValue = 0;
@@ -153,5 +150,37 @@ public class MainActivity extends AppCompatActivity {
             return fromValue - fromValue * (percentage / 100);
         }
         return fromValue;
+    }
+
+    public void reverseCurrencies(View v){
+        int aux = from;
+        from = to;
+        to = aux;
+
+        // Ara actualitzem els textos de l'aplicacio
+        updateCurrenciesDisplay();
+        updateValues();
+        updateExchangeValueText();
+    }
+
+    public void feesCheckChange(View v){
+        CheckBox checkbox = (CheckBox) v;
+        EditText edittext = (EditText) findViewById(R.id.fees_percentage);
+        if(checkbox.isChecked()){
+            edittext.setVisibility(View.VISIBLE);
+        }else{
+            edittext.setVisibility(View.GONE);
+        }
+        updateValues();
+    }
+
+    public String getRoundedString(double value, int decimals){
+        if (decimals < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, decimals);
+        value = value * factor;
+        long tmp = Math.round(value);
+        double rounded = (double) tmp / factor;
+        return Double.toString(rounded);
     }
 }
